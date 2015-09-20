@@ -9,6 +9,8 @@
 import UIKit
 
 class AllPokemonTableViewController: UITableViewController {
+    
+    var pokemonImageList = ["http://pokeapi.co/media/img/1383571573.78.png/"];
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +30,33 @@ class AllPokemonTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1 //Remember to change this with the data obtain from the web service.
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let pokemonCellIdentifier = "pokemonCell"
+        let cell = tableView.dequeueReusableCellWithIdentifier(pokemonCellIdentifier, forIndexPath: indexPath) as! PokemonTableViewCell
+        
+        //Two If in one.  Verifies if it contains a string, and if the url has data.
+        
+        if let url  = NSURL(string: pokemonImageList[indexPath.row]), data = NSData(contentsOfURL: url)
+        {
+            cell.pokemonSprite.image = UIImage(data: data);
+        }
+
+        cell.pokemonNameLabel.text = "TestingName"
+        cell.pokemonType1Label.text = "Type1"
+        cell.pokemonType2Label.text =  "Type2"
+        
+        //To Make the Images Circular, I have modified the radius of the image in the cell.
+        cell.pokemonSprite.layer.cornerRadius = cell.pokemonSprite.frame.size.width/2;
+        cell.pokemonSprite.clipsToBounds = true;
+        
+        return cell
     }
 
     /*
