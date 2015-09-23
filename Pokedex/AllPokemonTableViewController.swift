@@ -56,6 +56,17 @@ class AllPokemonTableViewController: UITableViewController {
         cell.pokemonSprite.layer.cornerRadius = cell.pokemonSprite.frame.size.width/2;
         cell.pokemonSprite.clipsToBounds = true;
         
+        /*
+        let testAbility = Ability();
+        testAbility.name = "thingy";
+        testAbility.resourceURI = "thingyThing";
+        let testAbility2 = Ability();
+        testAbility2.name = "thingy";
+        testAbility2.resourceURI = "thingyThing";
+        let test = Pokemon();
+        test.abilities.append(testAbility);
+        test.abilities.append(testAbility2);
+*/
         return cell
     }
 
