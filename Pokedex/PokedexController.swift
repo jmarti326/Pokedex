@@ -8,13 +8,16 @@
 
 import Foundation
 
-public class PokedexController:APIRequest
+public class PokedexController
 {
-    public func getPokedex() -> Pokedex
+    private let API = APIRequest();
+    
+    public func getPokedex()
     {
-        let pokedexObj = pokedexRequest()
-
-        return pokedexObj
+        API.pokedexRequest(){ response in
+            print(response)
+            self.API.pokedexWrapper(response)
+        }
     }
     
     public func getPokemon(id:Int) -> Pokemon

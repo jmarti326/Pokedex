@@ -11,10 +11,12 @@ import UIKit
 class AllPokemonTableViewController: UITableViewController {
     
     var pokemonImageList = ["http://pokeapi.co/media/img/1383571573.78.png/"];
+    let controller = PokedexController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        controller.getPokedex()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

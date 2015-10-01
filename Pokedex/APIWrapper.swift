@@ -10,10 +10,18 @@ import Foundation
 
 public class APIWrapper
 {
-    public func pokedexWrapper(data:NSString) -> Pokedex
+    public func pokedexWrapper(data:NSArray) -> [Pokedex]
     {
-        let obj = Pokedex()
-        return obj
+        var pokedexList = [Pokedex]()
+        
+        for(var i = 0; i<data.count; i++)
+        {
+            let pokedexObj = Pokedex()
+            pokedexObj.name = "testing" + String(i)
+            print(data[0]["name"])
+            pokedexList.append(pokedexObj)
+        }
+        return pokedexList
     }
     
     public func pokemonWrapper(data:NSString) -> Pokemon

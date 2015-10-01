@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "APIRequest.(HTTPRequest(APIRequest) -&gt; (String) -&gt; NSString).(closure #1):APIRequest.swift">
+      </ContextState>
+      <ContextState
+         contextName = "APIRequest.pokedexRequest() -&gt; Pokedex:APIRequest.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "APIRequest.(HTTPRequest(APIRequest) -&gt; (String) -&gt; NSDictionary).(closure #1):APIRequest.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

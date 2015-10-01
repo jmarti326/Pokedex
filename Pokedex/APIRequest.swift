@@ -12,9 +12,9 @@ public class APIRequest:APIWrapper
 {
     var pokeAPI = PokeAPI()
     
-    func HTTPRequest(url:String) -> NSString
+    func pokedexRequest(completionBlock:NSArray -> ())
     {
-        var result:NSString = ""
+        let url = pokeAPI.baseURL + pokeAPI.pokedex
         let request: NSURLRequest = NSURLRequest(URL: NSURL(string: url)!)
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: config)
@@ -26,37 +26,26 @@ public class APIRequest:APIWrapper
             }
             else
             {
-                
                 do
                 {
                     let jsonData:NSDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as! NSDictionary//Dictionary<String, AnyObject>
-                    print(jsonData)
-                    for(var i = 0; i<jsonData["pokemon"]?.count; i++)
-                    {
-                        let obj = jsonData["pokemon"]![i] as! NSDictionary
-                        print(obj["name"])
-                    }
-
+                    completionBlock(jsonData["pokemon"] as! NSArray)
+                    //print(jsonData)
+                    //for(var i = 0; i<jsonData["pokemon"]?.count; i++)
+                    //{
+                        //let obj = jsonData["pokemon"]![i] as! NSDictionary
+                        //print(obj["name"])
+                    //}
+                    
                 }
                 catch
                 {
                     print("problem with the NSJsonSerialization")
                 }
-                result = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+                //result = NSString(data: data!, encoding: NSUTF8StringEncoding)!
             }
         });
         task.resume()
-        
-        return result
-    }
-    
-    public func pokedexRequest() -> Pokedex
-    {
-        let url = pokeAPI.baseURL + pokeAPI.pokedex
-        let data = HTTPRequest(url)
-        //let obj = pokedexWrapper(data)
-        let obj = Pokedex()
-        return obj
     }
     
     public func pokemonRequest(data:NSString) -> Pokemon
